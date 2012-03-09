@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+    <metadata>
+        <name>silver.post</name>
+        <version>2012-03-09</version>
+        <copyright>Copyright (c) 2012 silver.solutions GmbH</copyright>
+        <license>GNU General Public License v2.0</license>
+        <info_url>http://projects.ez.no/silver-post/</info_url>
+    </metadata>
+
+    <dependencies>
+        <extends>
+            <extension name="ezprestapiprovider" />
+        </extends>
+    </dependencies>
+
+</software>

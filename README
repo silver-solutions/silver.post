@@ -1,0 +1,89 @@
+silver.post Extension for eZ Publish
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+silver.post extends the ezprestapiprovider Extension by means
+to publish new articles via the REST interface.
+
+silver.post depends on the ezprestapiprovider extension which comes
+with eZ Publish since version 4.5.0.
+Sourcecode: https://github.com/ezsystems/ezprestapiprovider/
+
+
+
+
+INSTALLATION
+============
+
+Follow these steps to add the silver.post Extension to your eZ publish installation:
+
+  1) Extract the archive into the /extension directory
+
+  2) Edit site.ini.append in /settings/override. Add the following to the file:
+
+       [ExtensionSettings]
+       ActiveExtensions[]=silver.post
+
+     (if you already have the [ExtensionSettings] block, just add the second line)
+
+     Alternatively activate the extension via the Admin interface.
+
+  3) Update the autoloader definitions by running the following command:
+
+       php bin/php/ezpgenerateautoloads.php -e -p
+
+  4) Clear Cache
+
+
+
+
+USAGE
+=====
+
+After enabling the extension, there are 3 new REST methods available:
+
+
+> http://example.org/api/ssr/v1/status
+
+Just returns a variables "status" with the value "OK". To check for connection and reachability.
+
+
+> http://example.org/api/ssr/v1/content/getallowednodes
+
+Returns "status" = "OK" and an array "allowed_nodes" which contains Node ID => Title from the
+silver.post.ini file. The number of entries in that array can be found in "allowed_nodes_count".
+
+
+> http://example.org/api/ssr/v1/content/addchild/<Node-Id>     (Replace <Node-Id> with the actual Node-ID.)
+
+Publishs a new "article" object below Node <Node-Id>. Please make sure the specific user
+has the appropriate permissions! You have to send a few parameters:
+
+  - "headline" : The article title.
+  - "teaser" : The intro text.
+  - "text" : The main body text.
+  - "image" (File-Upload, optional)
+
+The method will return the following values:
+
+  - "status" : "OK" if everything went fine, "ERROR" on error
+
+The following variables are only returned if "status" was "OK".
+  - "contentobject_id" : ContentObject-ID of the new article
+  - "main_node_id" : Main Node-ID of the new article
+  - "url_alias" : URL-Alias of the new article
+  - "url" : Full URL of the new article
+
+
+
+
+LICENSE
+=======
+
+This file may be distributed and/or modified under the terms of the "GNU
+General Public License" version 2 as published by the Free Software Foundation
+
+This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
+The "GNU General Public License, version 2" (GPLv2) is available at
+http://www.gnu.org/licenses/gpl-2.0.html.
