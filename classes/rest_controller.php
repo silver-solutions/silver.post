@@ -3,6 +3,7 @@
 /**
  * MVC Controller for silver.post extension
  *
+ * @author Markus Birth <mab@silversolutions.de>
  * @copyright Copyright (c) 2012 silver.solutions GmbH. All rights reserved.
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2.0
  */
@@ -11,6 +12,7 @@ class svrPostController extends ezcMvcController {
     /**
      * Sets a variable "status" to the value "OK" (string). Used to check if the REST interface is working.
      * @return \ezcMvcResult Variable "status" = "OK"
+     * @since 2012-03-09
      */
     public function doStatus() {
         $result = new ezcMvcResult();
@@ -21,6 +23,7 @@ class svrPostController extends ezcMvcController {
     /**
      * Adds a new article item to the current node's children. Parameters: headline, teaser, text, image
      * @return \ezcMvcResult "status" = "OK"|"ERROR", if "OK": Variables "contentobject_id", "main_node_id", "url_alias" and "url" to the new node
+     * @since 2012-03-09
      */
     public function doAddChildNode() {
         // needed for Publishing, index.php:336
@@ -75,6 +78,7 @@ class svrPostController extends ezcMvcController {
     /**
      * Returns a list of all allowed nodes to post in (read from silver.post.ini)
      * @return \ezcMvcResult Allowed nodes in "allowed_nodes", count in "allowed_nodes_count".
+     * @since 2012-03-09
      */
     public function doGetAllowedNodes() {
         $sr_ini = eZINI::instance( 'silver.post.ini' );
@@ -91,6 +95,7 @@ class svrPostController extends ezcMvcController {
      * Creates a eZXML wrapping around the given String
      * @param string $txt Text content to convert to eZXML
      * @return string eZXML-type string
+     * @since 2012-03-09
      */
     public static function wrapXML( $txt ) {
         return '<?xml version="1.0" encoding="utf-8"?><section xmlns:image="http://ez.no/namespaces/ezpublish3/image/" xmlns:xhtml="http://ez.no/namespaces/ezpublish3/xhtml/" xmlns:custom="http://ez.no/namespaces/ezpublish3/custom/"><paragraph><line xmlns:tmp="http://ez.no/namespaces/ezpublish3/temporary/">' . $txt . '</line></paragraph></section>';
@@ -99,6 +104,7 @@ class svrPostController extends ezcMvcController {
     /**
      * Logs entry to var/log/rest.log
      * @param string $txt Log message
+     * @since 2012-03-09
      */
     public static function log( $txt ) {
         $stamp = date( 'Y-m-d H:i.s' );

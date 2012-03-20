@@ -74,6 +74,24 @@ The following variables are only returned if "status" was "OK".
   - "url" : Full URL of the new article
 
 
+All 3 methods are defined in classes/rest_controller.php . Change them to fit your needs.
+
+
+
+
+AUTHOR
+======
+
+This extension was developed by:
+
+silver.solutions GmbH
+Färberstraße 26
+12555 Berlin
+Germany
+
+www.silversolutions.de
+
+
 
 
 LICENSE
